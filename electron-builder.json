@@ -1,0 +1,15 @@
+{
+  "appId": "com.gabriel-ragonha.car-sell-app",
+  "files": ["dist-electron", "dist-react"],
+  "icon": "./appIcon.png",
+  "linux": {
+    "target": "appImage",
+    "category": "Utility"
+  },
+  "win": {
+    "target": ["portable", "msi"]
+  },
+  "mac": {
+    "target": "dmg"
+  }
+}
