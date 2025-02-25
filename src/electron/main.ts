@@ -7,7 +7,6 @@ app.on("ready", () => {
   const mainWindow = new BrowserWindow({
     webPreferences: {
       preload: getPreloadPath(),
-      contextIsolation: true,
     },
     show: false,
   });
