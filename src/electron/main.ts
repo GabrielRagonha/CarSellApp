@@ -36,7 +36,7 @@ app.on("ready", () => {
 
 ipcMain.handle("get-templates", async () => {
   try {
-    const templatesDir = path.join(app.getAppPath(), "src/electron/templates");
+    const templatesDir = path.join(app.getAppPath(), "templates");
     const files = fs.readdirSync(templatesDir);
     return files.filter((file) => file.endsWith(".docx"));
   } catch (error: any) {
@@ -49,7 +49,7 @@ ipcMain.handle("read-template", async (_, templateName) => {
   try {
     const templatePath = path.join(
       app.getAppPath(),
-      "src/electron/templates",
+      "templates",
       templateName
     );
     return fs.readFileSync(templatePath);
@@ -77,7 +77,7 @@ ipcMain.handle("show-save-dialog", async (_, options) => {
 
 ipcMain.handle("save-contract", async (_, templateName, data, outputPath) => {
   try {
-    const templatesDir = path.join(app.getAppPath(), "src/electron/templates");
+    const templatesDir = path.join(app.getAppPath(), "templates");
     const templatePath = path.join(templatesDir, templateName);
 
     const content = fs.readFileSync(templatePath, "binary");
@@ -89,9 +89,7 @@ ipcMain.handle("save-contract", async (_, templateName, data, outputPath) => {
       linebreaks: true,
     });
 
-    doc.setData(data);
-
-    doc.render();
+    doc.render(data);
 
     const buffer = doc.getZip().generate({
       type: "nodebuffer",
