@@ -1,6 +1,7 @@
 {
   "appId": "com.gabriel-ragonha.car-sell-app",
   "files": ["dist-electron", "dist-react"],
+  "extraResources": ["dist-electron/preload.cjs"],
   "icon": "./appIcon.png",
   "linux": {
     "target": "appImage",
